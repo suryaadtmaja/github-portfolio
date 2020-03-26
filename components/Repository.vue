@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-for="(i, index) in repos" :key="index" class="card p-4">
+    <div v-for="(i, index) in repo" :key="index" class="card p-4 mt-4">
       <div class="flex flex-col">
         <h3 class="text-base font-bold">{{ i.name }}</h3>
         <p class="pt-2 text-sm font-light">{{ i.description }}</p>
       </div>
       <div class="pt-10 justify-end flex flex-row">
-        <div class="flex flex-row">
+        <div v-if="i.language != null" class="flex flex-row">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -20,9 +20,9 @@
           >
             <circle cx="12" cy="12" r="10" />
           </svg>
-          <div class="ml-2 text-base font-light">JavaScript</div>
+          <div class="ml-2 text-base font-light">{{ i.language }}</div>
         </div>
-        <div class="ml-5 flex flex-row">
+        <div v-if="i.stargazers_count > 0" class="ml-5 flex flex-row">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -46,6 +46,12 @@
 </template>
 <script>
 export default {
+  props: {
+    repo: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       repos: [
