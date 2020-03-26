@@ -48,7 +48,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'https://api.github.com/users/'
+  },
   /*
    ** Build configuration
    */
